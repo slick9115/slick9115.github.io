@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>HTML Editor - Full Version</title>
+</head>
+<body>
+<table border="0" cellpadding="1" cellspacing="1" style="width:500px;" summary="Numbers to calculate suspension.">
+	<colgroup>
+		<col width="125" />
+		<col width="40" />
+		<col width="130" />
+	</colgroup>
+	<caption>Your Input:</caption>
+	<tbody>
+		<tr>
+			<td>Weight (2000 - 9000) lbs</td>
+			<td><input maxlength="4" name="weight" size="5" type="text" /></td>
+			<td><input name="weightErr" type="hidden" /></td>
+		</tr>
+		<tr>
+			<td>Initial Multiplier (1-99) %</td>
+			<td><input maxlength="2" name="initialM" size="5" type="text" /></td>
+			<td><input name="initialMErr" type="hidden" /></td>
+		</tr>
+		<tr>
+			<td>Front Distribution (1-99) %</td>
+			<td><input maxlength="2" name="distro" size="5" type="text" /></td>
+			<td><input name="distroErr" type="hidden" /></td>
+		</tr>
+	</tbody>
+</table>
+
+<p>&nbsp; &nbsp;&nbsp;<input name="submitB" type="submit" value="Submit" />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input name="resetB" type="reset" value="Reset" /></p>
+
+<table border="0" cellpadding="1" cellspacing="1" style="width:250px;" summary="The numbers for your suspension.">
+	<colgroup>
+		<col width="50" />
+		<col width="40" />
+		<col width="40" />
+	</colgroup>
+	<caption>Output:</caption>
+	<tbody>
+		<tr>
+			<td>Anti-Roll Bars</td>
+			<td>Front</td>
+			<td><input name="arF" type="hidden" /></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>Rear</td>
+			<td><input name="arR" type="hidden" /></td>
+		</tr>
+		<tr>
+			<td>Springs</td>
+			<td>Front</td>
+			<td><input name="sF" type="hidden" /></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>Rear</td>
+			<td><input name="sR" type="hidden" /></td>
+		</tr>
+		<tr>
+			<td>Rebound</td>
+			<td>Front</td>
+			<td><input name="rF" type="hidden" /></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>Rear</td>
+			<td><input name="rR" type="hidden" /></td>
+		</tr>
+		<tr>
+			<td>Bump</td>
+			<td>Front</td>
+			<td><input name="bF" type="hidden" /></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>Rear</td>
+			<td><input name="bR" type="hidden" /></td>
+		</tr>
+	</tbody>
+</table>
+
+<p>&nbsp;</p>
+</body>
+</html>
