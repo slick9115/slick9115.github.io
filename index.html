@@ -26,12 +26,12 @@
         </tr>
         <tr>
             <td>Initial Multiplier %</td>
-            <td><input maxlength="2" name="initialM" size="5" type="text" title="Must be between 1 and 99" pattern="^\d{2}$"/></td>
+            <td><input maxlength="2" name="initialM" size="5" type="text" title="Must be between 25 and 75" pattern="^\d{2}$"/></td>
             <td><input name="initialMErr" type="hidden"/></td>
         </tr>
         <tr>
             <td>Front Distribution %</td>
-            <td><input maxlength="2" name="distro" size="5" type="text" title="Must be between 1 and 99" patter="^\d{2}$"/></td>
+            <td><input maxlength="2" name="distro" size="5" type="text" title="Must be between 30 and 65" pattern="^\d{2}$"/></td>
             <td><input name="distroErr" type="hidden"/></td>
         </tr>
         </tbody>
@@ -42,6 +42,43 @@
         <button type="reset" value="Reset">Reset</button>
     </p>
 </form>
+
+<script>
+    function validate() {
+        var inputs = [
+            document.forms["myForm"]["bbname"].value,
+            document.forms["myForm"]["bbaddr"].value,
+            document.forms["myForm"]["bbnum"].value,
+            document.forms["myForm"]["bburl"].value,
+            document.forms["myForm"]["name"].value,
+            document.forms["myForm"]["email"].value,
+            document.forms["myForm"]["addr"].value,
+            document.forms["myForm"]["ccnum"].value
+        ]
+        var x;
+        err = [];
+        for (x in inputs) {
+            if (inputs[x] == null || inputs[x] == "") {
+                err.push(x);
+            }
+        }
+        if (err.length == 0)
+            return;
+        var errStr = "";
+        for (x in err) {
+            if (err[x] == 0) errStr += "\n Insert B&B Name.";
+            else if (err[x] == 1) errStr += "\n Insert B&B Address.";
+            else if (err[x] == 2) errStr += "\n Insert B&B Number.";
+            else if (err[x] == 3) errStr += "\n Insert B&B URL.";
+            else if (err[x] == 4) errStr += "\n Insert Your Name.";
+            else if (err[x] == 5) errStr += "\n Insert Your Email.";
+            else if (err[x] == 6) errStr += "\n Insert Your Address.";
+            else if (err[x] == 7) errStr += "\n Insert Your Credit Card Number.";
+        }
+        alert(errStr);
+        return false;
+    }
+</script>
 
 <table border="1" cellpadding="1" cellspacing="1" style="width:250px;" summary="The numbers for your suspension.">
     <colgroup>
