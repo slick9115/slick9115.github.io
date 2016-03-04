@@ -49,7 +49,7 @@
             document.forms["userInput"]["weight"].value,
             document.forms["userInput"]["initialM"].value,
             document.forms["userInput"]["distro"].value
-        ]
+        ];
         var x;
         err = [];
         for (x in inputs) {
@@ -59,10 +59,9 @@
         }
         for (x in err) {
             if (err[x] == 0) document.getElementById("weightErr").value = "Invalid Input";
-            else if (err[x] == 1) errStr += "\n Insert B&B Address.";
-            else if (err[x] == 2) errStr += "\n Insert B&B Number.";
+//            else if (err[x] == 1) errStr += "\n Insert B&B Address.";
+//            else if (err[x] == 2) errStr += "\n Insert B&B Number.";
         }
-        alert(errStr);
         return false;
     }
 </script>
