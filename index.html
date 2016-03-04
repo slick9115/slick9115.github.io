@@ -20,7 +20,7 @@
             <td><span style="display: none;">&nbsp;</span><span style="display: none;">&nbsp;</span>Weight (lbs)
             </td>
             <td><label>
-                <input maxlength="4" name="weight" size="5" type="text" title="Must be between 2000 and 9000" pattern="^[2-9]\d{3}$"/>
+                <input maxlength="4" name="weight" size="5" type="text" title="Must be between 1000 and 9000" pattern="^[1-9]\d{3}$"/>
             </label></td>
             <td><input name="weightErr" type="hidden"/></td>
         </tr>
@@ -46,14 +46,9 @@
 <script>
     function validate() {
         var inputs = [
-            document.forms["myForm"]["bbname"].value,
-            document.forms["myForm"]["bbaddr"].value,
-            document.forms["myForm"]["bbnum"].value,
-            document.forms["myForm"]["bburl"].value,
-            document.forms["myForm"]["name"].value,
-            document.forms["myForm"]["email"].value,
-            document.forms["myForm"]["addr"].value,
-            document.forms["myForm"]["ccnum"].value
+            document.forms["userInput"]["weight"].value,
+            document.forms["userInput"]["initialM"].value,
+            document.forms["userInput"]["distro"].value
         ]
         var x;
         err = [];
@@ -62,18 +57,10 @@
                 err.push(x);
             }
         }
-        if (err.length == 0)
-            return;
-        var errStr = "";
         for (x in err) {
-            if (err[x] == 0) errStr += "\n Insert B&B Name.";
+            if (err[x] == 0) document.getElementById("weightErr").value = "Invalid Input";
             else if (err[x] == 1) errStr += "\n Insert B&B Address.";
             else if (err[x] == 2) errStr += "\n Insert B&B Number.";
-            else if (err[x] == 3) errStr += "\n Insert B&B URL.";
-            else if (err[x] == 4) errStr += "\n Insert Your Name.";
-            else if (err[x] == 5) errStr += "\n Insert Your Email.";
-            else if (err[x] == 6) errStr += "\n Insert Your Address.";
-            else if (err[x] == 7) errStr += "\n Insert Your Credit Card Number.";
         }
         alert(errStr);
         return false;
