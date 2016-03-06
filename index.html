@@ -1,12 +1,11 @@
 <!DOCTYPE html>
-<!--suppress HtmlFormInputWithoutLabel -->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Race Calculator</title>
 </head>
 <body>
-<form name="userInput" onsubmit="return validate()">
+<form id="userInput" action="">
 
     <table border="1" cellpadding="1" cellspacing="1" style="width:500px;" summary="Numbers to calculate suspension.">
         <colgroup>
@@ -17,54 +16,32 @@
         <caption>Your Input:</caption>
         <tbody>
         <tr>
-            <td><span style="display: none;">&nbsp;</span><span style="display: none;">&nbsp;</span>Weight (lbs)
+            <td><span style="display: none;">&nbsp;</span><span style="display: none;">&nbsp;</span>Weight (lbs)</td>
+            <td><input type="number" id="weight" min="1000" max="9000" title="Must be between 1000 and 9000" style="width: 50px;"required/></td>
+            <!--<td><input type="text" name="weight" style="width: 50px;" pattern="^[1-9]\d{3}$" title="blah blah"/></td>-->
+            <td><label id="weightErr" style="visibility: hidden">Invalid input. Check numbers.</label>
             </td>
-            <td><label>
-                <input maxlength="4" name="weight" size="5" type="text" title="Must be between 1000 and 9000" pattern="^[1-9]\d{3}$"/>
-            </label></td>
-            <td><input name="weightErr" type="hidden"/></td>
         </tr>
         <tr>
             <td>Initial Multiplier %</td>
-            <td><input maxlength="2" name="initialM" size="5" type="text" title="Must be between 25 and 75" pattern="^\d{2}$"/></td>
-            <td><input name="initialMErr" type="hidden"/></td>
+            <td><input type="text" id="initialM" min="25" max="75" title="Must be between 25 and 75" value="48.7" style="width: 50px;" required/></td>
+            <!--pattern="^2[5-9]\.?\d?$|^3[0-9]\.?\d?$|^4[0-9]\.?\d?$|^5[0-9]\.?\d?$|^6[0-9]\.?\d?$|^7[0-4]\.?\d?$|^75$"-->
+            <td><label id="initialMErr" style="visibility: hidden">Invalid input. Check numbers.</label></td>
         </tr>
         <tr>
             <td>Front Distribution %</td>
-            <td><input maxlength="2" name="distro" size="5" type="text" title="Must be between 30 and 65" pattern="^\d{2}$"/></td>
-            <td><input name="distroErr" type="hidden"/></td>
+            <td><input type="number" id="distro" min="25" max="75" title="Must be between 30 and 65" style="width: 50px;" required/></td>
+            <!--pattern="^3[0-9]$|^4[0-9]$|^5[0-9]$|^6[0-5]$"-->
+            <td><label id="distroErr" style="visibility: hidden">Invalid input. Check numbers.</label></td>
         </tr>
         </tbody>
     </table>
     <p>&nbsp; &nbsp;&nbsp;
-        <button type="submit" value="Submit">Submit</button>
+        <button type="button" onclick="validate()">Submit</button>
         &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-        <button type="reset" value="Reset">Reset</button>
+        <button type="reset">Reset</button>
     </p>
 </form>
-
-<script>
-    function validate() {
-        var inputs = [
-            document.forms["userInput"]["weight"].value,
-            document.forms["userInput"]["initialM"].value,
-            document.forms["userInput"]["distro"].value
-        ];
-        var x;
-        err = [];
-        for (x in inputs) {
-            if (inputs[x] == null || inputs[x] == "") {
-                err.push(x);
-            }
-        }
-        for (x in err) {
-            if (err[x] == 0) document.getElementById("weightErr").value = "Invalid Input";
-//            else if (err[x] == 1) errStr += "\n Insert B&B Address.";
-//            else if (err[x] == 2) errStr += "\n Insert B&B Number.";
-        }
-        return false;
-    }
-</script>
 
 <table border="1" cellpadding="1" cellspacing="1" style="width:250px;" summary="The numbers for your suspension.">
     <colgroup>
@@ -77,46 +54,90 @@
     <tr>
         <td><span style="display: none;">&nbsp;</span>Anti-Roll Bars</td>
         <td>Front</td>
-        <td><input name="arF" type="hidden"/></td>
+        <td><input id="arF" style="visibility: hidden"/></td>
     </tr>
     <tr>
         <td>&nbsp;</td>
         <td>Rear</td>
-        <td><input name="arR" type="hidden"/></td>
+        <td><input id="arR" style="visibility: hidden"/></td>
     </tr>
     <tr>
         <td>Springs</td>
         <td>Front</td>
-        <td><input name="sF" type="hidden"/></td>
+        <td><input id="sF" style="visibility: hidden"/></td>
     </tr>
     <tr>
         <td>&nbsp;</td>
         <td>Rear</td>
-        <td><input name="sR" type="hidden"/></td>
+        <td><input id="sR" style="visibility: hidden"/></td>
     </tr>
     <tr>
         <td>Rebound</td>
         <td>Front</td>
-        <td><input name="rF" type="hidden"/></td>
+        <td><input id="rF" style="visibility: hidden"/></td>
     </tr>
     <tr>
         <td>&nbsp;</td>
         <td>Rear</td>
-        <td><input name="rR" type="hidden"/></td>
+        <td><input id="rR" style="visibility: hidden"/></td>
     </tr>
     <tr>
         <td>Bump</td>
         <td>Front</td>
-        <td><input name="bF" type="hidden"/></td>
+        <td><input id="bF" style="visibility: hidden"/></td>
     </tr>
     <tr>
         <td>&nbsp;</td>
         <td>Rear</td>
-        <td><input name="bR" type="hidden"/></td>
+        <td><input id="bR" style="visibility: hidden"/></td>
     </tr>
     </tbody>
 </table>
 
 <p>&nbsp;</p>
+
+<script>
+    function validate() {
+        var inputs = [
+            document.forms["userInput"]["weight"].value,
+            document.forms["userInput"]["initialM"].value,
+            document.forms["userInput"]["distro"].value
+        ];
+        document.getElementById("weightErr").style.visibility = "hidden";
+        document.getElementById("initialMErr").style.visibility = "hidden";
+        document.getElementById("distroErr").style.visibility = "hidden";
+
+        var x;
+        err = [];
+        for (x in inputs) {
+            if (inputs[x] == null || inputs[x] == "") {
+                err.push(x);
+            }
+        }
+        if (err.length!=0) {
+            for (x in err) {
+                if (err[x] == 0) {
+                    document.getElementById("weightErr").style.visibility = "visible";
+                    document.getElementById("weight").focus();
+                }
+
+                else if (err[x] == 1) {
+                    document.getElementById("initialMErr").style.visibility = "visible";
+                    document.getElementById("initialM").focus();
+                }
+                else if (err[x] == 2) {
+                    document.getElementById("distroErr").style.visibility = "visible";
+                    document.getElementById("distro").focus();
+                }
+            }
+            return false;
+        }
+        else {
+            document.getElementById("arF").value = "TEST";
+            document.getElementById("arF").style.visibility = "visible";
+            return true;
+        }
+    }
+</script>
 </body>
 </html>
