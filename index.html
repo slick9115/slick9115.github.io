@@ -16,21 +16,24 @@
         <caption>Your Input:</caption>
         <tbody>
         <tr>
-            <td><span style="display: none;">&nbsp;</span><span style="display: none;">&nbsp;</span>Weight (lbs)</td>
-            <td><input type="number" id="weight" min="1000" max="9000" title="Must be between 1000 and 9000" style="width: 50px;"required/></td>
+            <td><span style="display: none;">&nbsp;</span><span style="display: none;">&nbsp;</span>Weight</td>
+            <td><input type="number" id="weight" min="1000" max="9000" title="Must be between 1000 and 9000"
+                       style="width: 50px;" required/> lbs.</td>
             <!--<td><input type="text" name="weight" style="width: 50px;" pattern="^[1-9]\d{3}$" title="blah blah"/></td>-->
             <td><label id="weightErr" style="visibility: hidden">Invalid input. Check numbers.</label>
             </td>
         </tr>
         <tr>
-            <td>Initial Multiplier %</td>
-            <td><input type="text" id="initialM" min="25" max="75" title="Must be between 25 and 75" value="48.7" style="width: 50px;" required/></td>
+            <td>Initial Multiplier</td>
+            <td><input type="text" id="initialM" min="25" max="75" title="Must be between 25 and 75" value="48.7"
+                       style="width: 50px;" required/> %</td>
             <!--pattern="^2[5-9]\.?\d?$|^3[0-9]\.?\d?$|^4[0-9]\.?\d?$|^5[0-9]\.?\d?$|^6[0-9]\.?\d?$|^7[0-4]\.?\d?$|^75$"-->
             <td><label id="initialMErr" style="visibility: hidden">Invalid input. Check numbers.</label></td>
         </tr>
         <tr>
-            <td>Front Distribution %</td>
-            <td><input type="number" id="distro" min="25" max="75" title="Must be between 30 and 65" style="width: 50px;" required/></td>
+            <td>Front Distribution</td>
+            <td><input type="number" id="distro" min="25" max="75" title="Must be between 30 and 65"
+                       style="width: 50px;" required/> %</td>
             <!--pattern="^3[0-9]$|^4[0-9]$|^5[0-9]$|^6[0-5]$"-->
             <td><label id="distroErr" style="visibility: hidden">Invalid input. Check numbers.</label></td>
         </tr>
@@ -43,53 +46,53 @@
     </p>
 </form>
 
-<table border="1" cellpadding="1" cellspacing="1" style="width:250px;" summary="The numbers for your suspension.">
+<table border="1" cellpadding="1" cellspacing="1" style="width:300px;" summary="The numbers for your suspension.">
     <colgroup>
-        <col width="50"/>
-        <col width="40"/>
-        <col width="40"/>
+        <col width="80"/>
+        <col width="45"/>
+        <col width="80"/>
     </colgroup>
     <caption>Output:</caption>
     <tbody>
     <tr>
         <td><span style="display: none;">&nbsp;</span>Anti-Roll Bars</td>
         <td>Front</td>
-        <td><input id="arF" style="visibility: hidden"/></td>
+        <td><label id="arF" style="visibility: hidden"></label></td>
     </tr>
     <tr>
         <td>&nbsp;</td>
         <td>Rear</td>
-        <td><input id="arR" style="visibility: hidden"/></td>
+        <td><label id="arR" style="visibility: hidden"></label></td>
     </tr>
     <tr>
         <td>Springs</td>
         <td>Front</td>
-        <td><input id="sF" style="visibility: hidden"/></td>
+        <td><label id="sF" style="visibility: hidden"></label></td>
     </tr>
     <tr>
         <td>&nbsp;</td>
         <td>Rear</td>
-        <td><input id="sR" style="visibility: hidden"/></td>
+        <td><label id="sR" style="visibility: hidden"></label></td>
     </tr>
     <tr>
         <td>Rebound</td>
         <td>Front</td>
-        <td><input id="rF" style="visibility: hidden"/></td>
+        <td><label id="rF" style="visibility: hidden"></label></td>
     </tr>
     <tr>
         <td>&nbsp;</td>
         <td>Rear</td>
-        <td><input id="rR" style="visibility: hidden"/></td>
+        <td><label id="rR" style="visibility: hidden"></label></td>
     </tr>
     <tr>
         <td>Bump</td>
         <td>Front</td>
-        <td><input id="bF" style="visibility: hidden"/></td>
+        <td><label id="bF" style="visibility: hidden"></label></td>
     </tr>
     <tr>
         <td>&nbsp;</td>
         <td>Rear</td>
-        <td><input id="bR" style="visibility: hidden"/></td>
+        <td><label id="bR" style="visibility: hidden"></label></td>
     </tr>
     </tbody>
 </table>
@@ -114,7 +117,7 @@
                 err.push(x);
             }
         }
-        if (err.length!=0) {
+        if (err.length != 0) {
             for (x in err) {
                 if (err[x] == 0) {
                     document.getElementById("weightErr").style.visibility = "visible";
@@ -133,8 +136,11 @@
             return false;
         }
         else {
-            document.getElementById("arF").value = "TEST";
+            var roll = inputs[0] * .066;
+            document.getElementById("arF").innerHTML = String((roll * (inputs[2] * .01)).toFixed(2));
             document.getElementById("arF").style.visibility = "visible";
+            document.getElementById("arR").innerHTML = String((roll * ((100 - inputs[2]) * .01)).toFixed(2));
+            document.getElementById("arR").style.visibility = "visible";
             return true;
         }
     }
