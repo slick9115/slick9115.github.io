@@ -136,11 +136,30 @@
             return false;
         }
         else {
-            var roll = inputs[0] * .066;
-            document.getElementById("arF").innerHTML = String((roll * (inputs[2] * .01)).toFixed(2));
+            //Anti-Roll
+            var roll = inputs[0] * .18;
+            document.getElementById("arF").innerHTML = String((roll * (inputs[2] * .001)).toFixed(2));
             document.getElementById("arF").style.visibility = "visible";
-            document.getElementById("arR").innerHTML = String((roll * ((100 - inputs[2]) * .01)).toFixed(2));
+            document.getElementById("arR").innerHTML = String((roll * ((100 - inputs[2]) * .001)).toFixed(2));
             document.getElementById("arR").style.visibility = "visible";
+            //Springs
+            var springs = inputs[0]*(inputs[1] *.01)
+            document.getElementById("sF").innerHTML = String((springs * (inputs[2] * .01)).toFixed(1));
+            document.getElementById("sF").style.visibility = "visible";
+            document.getElementById("sR").innerHTML = String((springs * ((100 - inputs[2]) * .01)).toFixed(1));
+            document.getElementById("sR").style.visibility = "visible";
+            //Rebound
+            var rebound = inputs[0] * .0066;
+            document.getElementById("rF").innerHTML = String((rebound * (inputs[2] * .01)).toFixed(1));
+            document.getElementById("rF").style.visibility = "visible";
+            document.getElementById("rR").innerHTML = String((rebound * ((100 - inputs[2]) * .01)).toFixed(1));
+            document.getElementById("rR").style.visibility = "visible";
+            //Bump
+            var bump = inputs[0] * .0044;
+            document.getElementById("bF").innerHTML = String((bump * (inputs[2] * .01)).toFixed(1));
+            document.getElementById("bF").style.visibility = "visible";
+            document.getElementById("bR").innerHTML = String((bump * ((100 - inputs[2]) * .01)).toFixed(1));
+            document.getElementById("bR").style.visibility = "visible";
             return true;
         }
     }
